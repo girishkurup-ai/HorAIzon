@@ -136,5 +136,5 @@ Admin views Knowledge Graph + generates PDF reports
 
 - SQLite database auto-created at `data/knowledge.db` on first run
 - `.env.local` and `data/` are excluded from git
-- For Gmail SMTP, use an [App Password](https://support.google.com/accounts/answer/185833)
+
 - Requires Node.js v18+
