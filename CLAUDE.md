@@ -14,15 +14,7 @@ npm start        # Run the production build (significantly faster than dev)
 
 No test scripts exist. Use `npm run build` to catch TypeScript errors before runtime.
 
-## Exposing to the Internet
 
-```bash
-# Cloudflare tunnel (preferred — works through corporate firewalls)
-"C:\Program Files (x86)\cloudflared\cloudflared.exe" tunnel --url http://localhost:3000
-
-# ngrok (alternative)
-ngrok http 3000
-```
 
 After starting a tunnel, update `APP_URL` in `.env.local` to the public URL and add the hostname to `allowedDevOrigins` in `next.config.ts`. Restart the server after `.env.local` changes.
 
@@ -31,7 +23,7 @@ After starting a tunnel, update `APP_URL` in `.env.local` to the public URL and 
 Copy `.env.example` to `.env.local`. Only two variables are needed:
 
 ```env
-ANTHROPIC_API_KEY=sk-ant-...
+OPENAI_API_KEY=........................................
 APP_URL=http://localhost:3000
 ```
 
@@ -53,7 +45,7 @@ There is no login, no JWT verification, and no admin portal in this branch. Sess
 
 ### The 4 AI agents
 
-All call `claude-sonnet-4-6` via `@anthropic-ai/sdk`. Each is stateless — context rebuilt from DB on every call. Client instantiation is lazy: `const getClient = () => new Anthropic({ apiKey: getEnv('ANTHROPIC_API_KEY') })`.
+All call `claude-sonnet-4-6` via `@anthropic-ai/sdk`. Each is stateless — context rebuilt from DB on every call. Client instantiation is lazy: `const getClient = () => new Anthropic({ apiKey: getEnv('OPENAI_API_KEY') })`.
 
 | Agent | File | Invocation |
 |-------|------|-----------|
@@ -109,4 +101,4 @@ When using tunnels in dev mode, add the tunnel hostname to `allowedDevOrigins` i
 | `GET /api/knowledge/graph` | Read knowledge graph for a topic |
 | `POST /api/reports/generate` | Generate PDF/Markdown report |
 | `GET /api/reports/list` | List saved reports |
-| `GET /api/test-env` | Verify ANTHROPIC_API_KEY is loaded |
+| `GET /api/test-env` | Verify OPENAI_API_KEY is loaded |

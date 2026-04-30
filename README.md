@@ -93,7 +93,7 @@ npm install
 ### 2. Configure environment
 
 ```bash
-cp .env.example .env
+copy .env.example .env
 ```
 Copy the .env.example contents as .env and update the myGenAssist API key as OPENAI_API_KEY
 
